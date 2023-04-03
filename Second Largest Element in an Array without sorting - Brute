@@ -1,0 +1,26 @@
+// second largest elements in array - Brute Force
+#include<bits/stdc++.h>
+using namespace std;
+
+int secondLargest(vector<int> &arr, int n)
+{
+    sort(arr.begin(), arr.end());           // O(NLOGN)
+    int sLargest = -1;
+    for(int i = n - 1 ; i >= 0 ; i--){         // O(N)
+        if(arr[i] != arr[n-1]){
+            sLargest = arr[i];
+            break;
+        }
+    }
+    return sLargest;
+}
+
+int main()
+{
+    vector<int> arr = {1,2,4,7,7,5};
+    int sLargest = secondLargest(arr, arr.size());
+    cout<<"Second Largest: "<<sLargest;
+}
+
+
+// TC = O(NLOGN) + O(N)
