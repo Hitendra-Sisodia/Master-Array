@@ -1,0 +1,23 @@
+// Array sorted or not - Recursive
+#include<bits/stdc++.h>
+using namespace std;
+bool sortedOrNot(vector<int> &arr, int n)
+{
+    if(n == 1){
+        return true;
+    }
+    if(arr[n-1] > arr[n]){
+        return false;
+    }
+    return sortedOrNot(arr, n-1);
+}
+
+int main()
+{
+    vector<int> arr = {1,10,2,3,34};
+    bool ans = sortedOrNot(arr, arr.size());
+    cout<<ans;
+}
+
+// TC = O(N)
+// SC = O(N) for Recursion Call Stack
