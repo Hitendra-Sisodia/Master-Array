@@ -1,0 +1,21 @@
+// second largest elements in array - Better
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    vector<int> arr = {9,3,5,63,7,7};
+    int largest = -1;
+    for(int i = 0 ; i < arr.size() ; i++){
+        if(arr[i]) > largest){
+            largest = arr[i];
+        }
+    }
+    int second_largest = -1;
+    for(int i = 0 ; i < arr.size() ; i++){
+        if(arr[i] > second_largest && arr[i] != largest){
+            second_largest = arr[i];
+        }
+    }
+    cout<<"Largest:"<<largest;
+    cout<<"Second Largest"<<second_largest;
+}
