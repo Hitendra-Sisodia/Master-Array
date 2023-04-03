@@ -1,0 +1,22 @@
+// Array sorted or not - Optimal
+#include<bits/stdc++.h>
+using namespace std;
+bool sortedOrNot(vector<int> &arr, int n)
+{
+    for(int i = 0 ; i < n - 1 ; i++){
+        if(arr[i] > arr[i+1]){
+            return false;
+        }
+    }
+    return true;
+}
+
+int main()
+{
+    vector<int> arr = {1,1,2,3,34};
+    bool ans = sortedOrNot(arr, arr.size());
+    cout<<ans;
+}
+
+// TC = O(N)
+// SC = O(1)
