@@ -1,0 +1,24 @@
+// Array sorted or not - Brute
+#include<bits/stdc++.h>
+using namespace std;
+bool sortedOrNot(vector<int> &arr, int n)
+{
+    for(int i = 0 ; i < n ; i++){
+        for(int j = i+1 ; j < n ; j++){
+            if(arr[i] > arr[j]){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+int main()
+{
+    vector<int> arr = {1,1,2,3,34};
+    bool ans = sortedOrNot(arr, arr.size());
+    cout<<ans;
+}
+
+// TC = O(N^2)
+// SC = O(1)
