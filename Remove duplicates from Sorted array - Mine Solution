@@ -1,0 +1,40 @@
+// Remove Duplicate from sorted arrays - Mine Solution
+#include<bits/stdc++.h> 
+using namespace std;
+
+int RemoveDuplicate(vector<int> &arr,int n)
+{
+    int j = 0;
+    int temp_val = arr[0];
+    int skip = 0;
+    for(int i = 1 ; i < n ; i++){
+        if(arr[i] == temp_val){
+            skip++;
+            continue;
+        }
+        else if(arr[i] != temp_val){
+            arr[j] = temp_val;
+            temp_val = arr[i];
+            j++;
+        }
+    }
+    arr[j] = temp_val;
+    return n - skip;
+}
+
+int main()
+{
+    vector<int> arr = {1,1,1,2,2,3,3,3,3,4,4};
+    cout<<"Before Removing Duplicates: ";
+    for(auto it: arr){
+        cout<<it<<" ";
+    }
+    cout<<endl<<"After Removing Duplicates: ";
+    int size = RemoveDuplicate(arr,arr.size());
+    for(int i = 0 ; i < size ; i++){
+        cout<<arr[i]<<" ";
+    }
+}
+
+// TC = O(N)
+// SC = O(1)
