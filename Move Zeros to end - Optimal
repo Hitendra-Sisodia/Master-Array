@@ -1,0 +1,33 @@
+// Move all zeros to end of array - Optimal(Two Pointer Approach)
+#include<bits/stdc++.h>
+using namespace std;
+void MoveZerosToEnd(vector<int> &arr,int n)
+{   
+    // find first 0th element position
+    int j = -1;
+    for(int i = 0 ; i < n ; i++){                // O(X): Where X is the index of first Zero element
+        if(arr[i] == 0){                           
+            j = i;
+            break;
+        }
+    }
+    // now swap elements in remaining array
+    for(int i = j+1 ; i < n ; i++){               //O(N-X)
+        if(arr[i] != 0){
+            swap(arr[i],arr[j]);
+            j++;
+        }
+    }
+}
+int main()
+{
+    vector<int> arr = {1,2,0,1,0,4,0};
+    MoveZerosToEnd(arr,arr.size());
+    for(auto it: arr){
+        cout<<it<<" ";
+    }
+}
+
+
+// TC = O(N)
+// SC = O(1)
