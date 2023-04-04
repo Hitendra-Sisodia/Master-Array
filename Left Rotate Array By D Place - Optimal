@@ -1,0 +1,33 @@
+// left rotate array by D place - Optimal
+#include<bits/stdc++.h>
+using namespace std;
+void LeftRotate(vector<int> &arr,int start, int end)
+{
+    while(start < end){
+        swap(arr[start], arr[end]);
+        start++;
+        end--;
+    }
+}
+
+int main()
+{
+    vector<int> arr = {1,2,3,4,5,6,7};
+    int d = 3;
+    int n = arr.size();
+    cout<<"Before Left shift array by d place: ";
+    for(auto it: arr){
+        cout<<it<<" ";
+    }
+    LeftRotate(arr,0,d-1);                          // O(D)
+    LeftRotate(arr,d,n-1);                          // O(N-D)
+    LeftRotate(arr,0,n-1);                          // O(N)
+    cout<<endl<<"After right shift array by d place: ";
+    for(auto it: arr){
+        cout<<it<<" ";
+    }
+}
+
+
+// TC = O(2N)
+// SC = O(1)
