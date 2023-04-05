@@ -1,0 +1,59 @@
+// Union of two arrays - Optimal(Two pointer Approach)
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> UnionSortedArray(vector<int> &arr1,vector<int> &arr2, int n1 ,int n2)
+{   
+    vector<int> uni;
+    int i = 0;
+    int j = 0;
+    while(i < n1 && j < n2){
+        // uni vector contain all elements in sorted order therefore, always picks smallest ele from array
+        if(arr1[i] <= arr2[j]){
+            if(uni.size() == 0 || uni.back() != arr1[i]){
+                uni.push_back(arr1[i]);
+            }
+            i++;
+        }
+        else{
+            if(uni.size() == 0 || uni.back() != arr2[j]){
+                uni.push_back(arr2[j]);
+            }
+            j++;
+        }
+    }
+    // still some elements remaining in second array
+    while(j < n2){
+        if(uni.size() == 0 || uni.back() != arr2[j]){
+            uni.push_back(arr2[j]);
+        }
+        j++;
+    }
+    while(i < n1){
+        if(uni.size() == 0 || uni.back() != arr1[i]){
+            uni.push_back(arr1[i]);
+        }
+        i++;
+    }
+    return uni;
+}
+int main()
+{
+    vector<int> arr1 = {1,2,3,4,5,6,7,8,9,10};
+    vector<int> arr2 = {2,3,4,4,5,11,12};
+    vector<int> ans = UnionSortedArray(arr1,arr2,arr1.size(), arr2.size());
+    for(auto it: ans){
+        cout<<it<<" ";
+    }
+}
+
+
+// TC = O(N1 + N2)
+// SC = O(N1 + N2)[Optional for returning answer]
+
+/*
+    Time Complexity: O(m+n), Because at max i runs for n times and j runs for m times.
+    When there are no common elements in arr1 and arr2 and all elements in arr1, arr2 are distinct. 
+    Space Complexity : O(m+n) {If Space of Union Vector is considered} 
+    O(1) {If Space of union Vector is not considered}
+*/
