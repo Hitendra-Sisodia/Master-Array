@@ -1,0 +1,31 @@
+// Union of two arrays - Brute(Set)
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> Union(vector<int> arr1, vector<int> arr2, int n1,int n2)
+{
+    set<int> s;                         // O(N1 + N2)
+    vector<int> u;                      // O(N1 + N2) used to return answer
+    for(int i = 0 ; i < n1; i++){                  // (N1 logN)
+        s.insert(arr1[i]);
+    }
+    for(int i = 0 ; i < n2 ; i++){                 // (N2 logn)
+        s.insert(arr2[i]);
+    }
+    for(auto it: s){                               // (N1 + N2)  when both array contain unique elements
+        u.push_back(it);
+    }
+    return u;
+}
+int main()
+{
+    vector<int> arr1 = {1,2,3,4,5,6,7,8,9,10};
+    vector<int> arr2 = {2,3,4,4,5,11,12};
+    vector<int> ans = Union(arr1,arr2,arr1.size(), arr2.size());
+    for(auto it: ans){
+        cout<<it<<" ";
+    }
+}
+
+
+// TC = O(N1 logn) + O(N2 logn) + O(N1 + N2)
+// SC = O(N1 + N2) + O(N1 + N2)
