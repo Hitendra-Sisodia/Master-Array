@@ -29,3 +29,11 @@ int main()
 
 // TC = O(N1 logN) + O(N2 logN) + O(N1 + N2)
 // SC = O(N1 + N2) 
+
+/*
+    Time Compleixty : O( (m+n)log(m+n) ) . Inserting a key in set takes logN times, 
+    where N is no of elements in set. At max set can store m+n elements 
+    {when there are no common elements and elements in arr,arr2 are distntict}. 
+    So Inserting m+n th element takes log(m+n) time. Upon approximation across 
+    insertion of all elements in worst it would take O((m+n)log(m+n) time.
+*/
