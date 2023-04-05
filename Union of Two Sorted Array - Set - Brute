@@ -5,13 +5,13 @@ vector<int> Union(vector<int> arr1, vector<int> arr2, int n1,int n2)
 {
     set<int> s;                         // O(N1 + N2)
     vector<int> u;                      // O(N1 + N2) used to return answer
-    for(int i = 0 ; i < n1; i++){                  // (N1 logN)
+    for(int i = 0 ; i < n1; i++){                  // O(N1 logN) N indicates that size of set is not fixed that increasing at each step
         s.insert(arr1[i]);
     }
-    for(int i = 0 ; i < n2 ; i++){                 // (N2 logn)
+    for(int i = 0 ; i < n2 ; i++){                 // O(N2 logN)
         s.insert(arr2[i]);
     }
-    for(auto it: s){                               // (N1 + N2)  when both array contain unique elements
+    for(auto it: s){                               // O(N1 + N2)  when both array contain unique elements
         u.push_back(it);
     }
     return u;
@@ -27,5 +27,5 @@ int main()
 }
 
 
-// TC = O(N1 logn) + O(N2 logn) + O(N1 + N2)
-// SC = O(N1 + N2) + O(N1 + N2)
+// TC = O(N1 logN) + O(N2 logN) + O(N1 + N2)
+// SC = O(N1 + N2) 
