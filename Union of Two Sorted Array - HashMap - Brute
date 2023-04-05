@@ -28,5 +28,5 @@ int main()
 }
 
 
-// TC = O(N1 logN) + O(N2 logN) + O(N1 + N2)
-// SC = O(N1 + N2)
+// TC = O(N1 logN) + O(N2 logN) + O(N1 + N2)[Optional]:      O( (N1+N2)log(N1+N2) )
+// SC = O(N1 + N2) + O(N1 + N2)[Optional]
