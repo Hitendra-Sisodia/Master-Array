@@ -1,0 +1,30 @@
+// Find Missing Number In Array - Optimal - 1
+#include<bits/stdc++.h>
+using namespace std;
+
+int FindMissingNumber(vector<int> arr,int n)
+{
+    int sum1 = (n *(n+1))/2;
+    int s = 0;
+    for(int j = 0 ; j < n-1 ; j++){
+        s += arr[j];
+    }
+    return sum1 - s;
+}
+int main()
+{
+    vector<int> arr = {1,2,4,5};
+    int N = 5;
+    cout<<FindMissingNumber(arr,N);
+}
+
+
+// TC = O(N)
+// SC = O(1)
+
+/*
+    Time Complexity: O(N), where N = size of array+1.
+    Reason: Here, we need only 1 loop to get the sum of the array elements. 
+    The loop runs for approx. N times. So, the time complexity is O(N).
+    Space Complexity: O(1) as we are not using any extra space.
+*/
