@@ -1,0 +1,38 @@
+// Find Missing Number In Array - Better(Hashing)
+#include<bits/stdc++.h>
+using namespace std;
+
+int FindMissingNumber(vector<int> arr,int n)
+{
+    int hash[n+1] = {0}; //hash array            // O(N+1)
+    int temp = -1;
+    // storing the frequencies:
+    for(int i = 0 ; i < n - 1 ; i++){                     // O(N - 1)
+        hash[arr[i]]++;
+    }
+    // don't use 0 index as we know input always range from 1 --- N
+    for(int i = 1 ; i <= n ; i++){                        // O(N)
+        if(hash[i] == 0){   
+            return i;
+        }
+    }
+    return -1;
+}
+int main()
+{
+    vector<int> arr = {1,2,4,5};
+    int N = 5;
+    cout<<FindMissingNumber(arr,N);
+}
+
+
+// TC = O(N) + O(N) ~ O(2*N)
+// SC = O(N)
+
+/*
+    Time Complexity: O(N) + O(N) ~ O(2*N),  where N = size of the array+1.
+    Reason: For storing the frequencies in the hash array, the program takes O(N) 
+    time complexity and for checking the frequencies in the second step again O(N) is required. 
+    So, the total time complexity is O(N) + O(N).
+    Space Complexity: O(N), where N = size of the array+1. Here we are using an extra hash array of size N+1.
+*/
