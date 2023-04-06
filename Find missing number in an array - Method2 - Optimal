@@ -1,0 +1,60 @@
+// Find Missing Number In Array - Optimal - 2
+// XOR Approach
+/*
+    Note: Among the optimal approaches, the XOR approach is slightly better 
+    than the summation one because the term (N * (N+1))/2 used in the summation method 
+    cannot be stored in an integer if the value of N is big (like 105). In that case, 
+    we have to use some bigger data types. But we will face no issues like this while using 
+    the XOR approach.
+
+    Intuition: Two important properties of XOR are the following:
+    XOR of two same numbers is always 0 i.e. a ^ a = 0. ←Property 1.
+    XOR of a number with 0 will result in the number itself i.e. 0 ^ a = a.  ← Property 2
+    Now, let’s XOR all the numbers between 1 to N.
+    xor1 = 1^2^…….^N
+    Let’s XOR all the numbers in the given array.
+    xor2 = 1^2^……^N (contains all the numbers except the missing one).
+    Now, if we again perform XOR between xor1 and xor2, we will get:
+    xor1 ^ xor2 = (1^1)^(2^2)^……..^(missing Number)^…..^(N^N)
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int FindMissingNumber(vector<int> arr,int N)
+{
+    int XOR1 = 0;
+    int XOR2 = 0;
+    for(int i = 0 ; i < N - 1 ; i++){
+        // calculating xor of numbers from 1 -> N
+        XOR1 ^= (i+1);      // XOR of array elements
+        XOR2 ^= (arr[i]); // XOR of array elements
+    }
+    XOR1 = XOR1 ^ N; // XOR up to [1...N] as loop running only 0 ---> n-2 times
+    return XOR1 ^ XOR2; // the missing number
+}
+int main()
+{
+    vector<int> arr = {1,2,4,5};
+    int N = 5;
+    cout<<FindMissingNumber(arr,N);
+}
+
+
+// TC = O(N)
+// SC = O(1)
+
+/*
+    Time Complexity: O(N), where N = size of array+1.
+    Reason: Here, we need only 1 loop to calculate the XOR. 
+    The loop runs for approx. N times. So, the time complexity is O(N).
+    Space Complexity: O(1) as we are not using any extra space.
+*/
+
+/*
+    Note: Among the optimal approaches, the XOR approach is slightly 
+    better than the summation one because the term (N * (N+1))/2 used in 
+    the summation method cannot be stored in an integer if the value of N is big (like 105). 
+    In that case, we have to use some bigger data types. But we will face no issues like this 
+    while using the XOR approach.
+*/
