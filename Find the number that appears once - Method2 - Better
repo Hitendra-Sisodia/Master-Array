@@ -1,0 +1,56 @@
+// Find the number that appears once, and the other numbers twice - Better(HashMap)
+
+/*
+    Intuition: The intuition will be the same as the array hashing. 
+    The only difference here is we will use the map data structure for hashing
+    instead of using another array for hashing.
+    Thus, we can reduce the cost of finding the occurrence and hence the time complexity.
+    Now, hashing can be done in two different ways and they are the following:
+        1} Array hashing(not applicable if the array contains negatives or very large numbers)
+        2} Hashing using the map data structure
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+int AppearOnce(vector<int> &arr, int n)
+{
+    // Declare the hashmap.
+    map<int,int> mpp;                           // O(M)
+    for(int i = 0 ; i < n ; i++){                           // O(N*LOG M)
+        mpp[arr[i]]++;                                      // M is the size of map M = (N/2) + 1
+    }
+    //Find the single element and return the answer
+    for(auto it: mpp){                                      // O(M)
+        if(it.second == 1){
+            return it.first;
+        }
+    }
+    //This line will never execute
+    //if the array contains a single element.
+    return -1;
+}
+int main()
+{
+    vector<int> arr = {10,1,2,1,2,10,40};
+    cout<<AppearOnce(arr,arr.size());
+}
+
+// TC = O(N) + O(N) + O(N) ~  O(3*N)
+// SC = O(maxElement + 1)
+
+/*
+    Time Complexity: O(N*logM) + O(M), where M = size of the map i.e. M = (N/2)+1. N = size of the array.
+    Reason: We are inserting N elements in the map data structure and insertion takes logM time
+    (where M = size of the map). So this results in the first term O(N*logM). 
+    The second term is to iterate the map and search the single element. 
+    
+    
+    In Java, 
+    HashMap generally takes O(1) time complexity for insertion and search. In that case, 
+    the time complexity will be O(N) + O(M).
+    Note: The time complexity will be changed depending on which map data structure we are using. 
+    If we use unordered_map in C++, the time complexity will be O(N) for the best and average case 
+    instead of O(N*logM). But in the worst case(which rarely happens), it will be nearly O(N^2).
+    
+    Space Complexity: O(M) as we are using a map data structure. Here M = size of the map i.e. M = (N/2)+1.
+*/
