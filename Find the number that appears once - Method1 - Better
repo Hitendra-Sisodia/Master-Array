@@ -1,0 +1,53 @@
+// Find the number that appears once, and the other numbers twice - Better(Array Hashing)
+
+/*
+    Intuition: In the previous approach, we were finding the occurrence of an element using linear search. 
+    We can optimize this using hashing technique. We can simply hash the elements along with their occurrences 
+    in the form of (key, value) pair. 
+    Thus, we can reduce the cost of finding the occurrence and hence the time complexity.
+    Now, hashing can be done in two different ways and they are the following:
+        1} Array hashing(not applicable if the array contains negatives or very large numbers)
+        2} Hashing using the map data structure
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+int AppearOnce(vector<int> &arr, int n)
+{
+    // find maxinum element in arr
+    int maxi = -1;
+    for(int i = 0 ; i < n ; i++){                   // O(N)
+        maxi = max(maxi,arr[i]);
+    }
+    // create hasharray of size maxi + 1;
+    vector<int> hash(maxi+1,0);
+
+    // now update the occurance of each element
+    for(int i = 0 ; i < n ; i++){                   // O(N)
+        hash[arr[i]] += 1;
+    }
+    // find single occurnace element and return the answer
+    for(int i = 1; i < n ; i++){                    // O(N)
+        if(hash[i] == 1){
+            return i;
+        }
+    }
+    //This line will never execute
+    //if the array contains a single element.
+    return -1;
+}
+int main()
+{
+    vector<int> arr = {10,1,2,1,2,10,40};
+    cout<<AppearOnce(arr,arr.size());
+}
+
+// TC = O(N) + O(N) + O(N) ~  O(3*N)
+// SC = O(maxElement + 1)
+
+/*
+    Time Complexity: O(N)+O(N)+O(N), where N = size of the array
+    Reason: One O(N) is for finding the maximum, the second one is to hash the elements and 
+    the third one is to search the single element in the array.
+    Space Complexity: O(maxElement+1) where maxElement = the maximum element of the array.
+*/
