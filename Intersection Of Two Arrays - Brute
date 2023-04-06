@@ -1,0 +1,43 @@
+// Intersection of two array - Brute
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> IntersectionOfArrays(vector<int> arr1, vector<int> arr2, int n1,int n2)
+{
+    vector<int> ans;
+    vector<int> visited(n2,0);
+    for(int i = 0 ; i < n1 ; i++){
+        for(int j = 0 ; j < n2 ; j++){
+            if(arr1[i] == arr2[j] && visited[j] == 0){
+                ans.push_back(arr1[i]);
+                visited[j] = 1;
+                break;
+            }
+            //because array is sorted , element will not be beyond this
+            if(arr2[j] < arr1[i]){
+                break;
+            }
+        }
+    }
+    return ans;
+}
+int main()
+{
+    vector<int> arr1 = {1,2,3,3,4,5,6,7};
+    vector<int> arr2 = {3,3,4,4,5,8};
+    vector<int> ans = IntersectionOfArrays(arr1,arr2,arr1.size() ,arr2.size());
+    for(auto it : ans){
+        cout<<it<<" ";
+    }
+}
+
+
+// TC = O(N1 * N2)
+// SC = O(N2)
+
+
+/*
+    Time Complexity: O(n1 x n2) ~ O(n^2) { There are nested loops where the outer one loops n1 times 
+    and the inner one loops n2 times, where n1 = A.size() and n2 = B.size() }.
+    Space Complexity: O(n) { Extra Space used for the visited and ans arrays }.
+*/
