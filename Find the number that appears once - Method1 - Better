@@ -27,9 +27,9 @@ int AppearOnce(vector<int> &arr, int n)
         hash[arr[i]] += 1;
     }
     // find single occurnace element and return the answer
-    for(int i = 1; i < n ; i++){                    // O(N)
-        if(hash[i] == 1){
-            return i;
+    for(int i = 0; i < n ; i++){                    // O(N)
+        if(hash[arr[i]] == 1){
+            return arr[i];
         }
     }
     //This line will never execute
