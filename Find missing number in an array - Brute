@@ -1,0 +1,41 @@
+// Find Missing Number In Array - Brute
+#include<bits/stdc++.h>
+using namespace std;
+
+int FindMissingNumber(vector<int> arr,int n)
+{
+    for(int i = 1 ; i <= n ; i++){
+        int flag = 0;
+        for(int j = 0 ; j < n ; j++){
+            // if number exist in array
+            if(arr[j] == i){
+                // then number exist in array and set flag to 1
+                flag = 1;
+                break;
+            }
+        }
+        // Now check flag is still 0 that means number doesn't exits in array
+        // then return that number
+        if(flag == 0){
+            return i;
+        }
+    }
+}
+int main()
+{
+    vector<int> arr = {1,2,4,5};
+    int N = 5;
+    cout<<FindMissingNumber(arr,N);
+}
+
+
+// TC = O(N^2)
+// SC = O(1)
+
+/*
+    Time Complexity: O(N2), where N = size of the array+1.
+    Reason: In the worst case i.e. if the missing number is N itself, 
+    the outer loop will run for N times, and for every single number the inner loop 
+    will also run for approximately N times. So, the total time complexity will be O(N2).
+    Space Complexity: O(1)  as we are not using any extra space.
+*/
