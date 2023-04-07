@@ -1,0 +1,42 @@
+// Length of the longest subarray - Optimal (Two Pointer)
+// Best for solution when array contain positive and 0 only not applicable on -ve numbers
+// Also known as sliding window approach
+
+#include<bits/stdc++.h>
+using namespace std;
+int LongestSubArray(vector<int> arr, int n ,int k)
+{
+    int i = 0;
+    int j = 0;
+    int sum = arr[0];
+    int maxLength = 0;
+    while(i < n){                               // O(N)
+        while(sum > k && j <= i){               // Total this loop will run total N times 
+            sum -= arr[j];
+            j++;
+        }
+        if(sum == k){
+            maxLength = max(maxLength,i-j+1);
+        }
+        i++;
+        if(i < n) sum += arr[i];
+    }
+    return maxLength;
+}
+int main()
+{
+    vector<int> arr ={2,3,5,1,9};
+    int k = 10;
+    cout<<LongestSubArray(arr,arr.size(), k);
+}
+
+// TC = O(N) + O(N): O(2N) ~ O(N)
+// SC = O(1)
+
+
+/*
+    Time Complexity: O(2n) ~ O(n), if we observe closely, 
+    the window only forwards to the right always. And every element is visited at most 2 times, 
+    one by the end variable and by the start variable.
+    Space Complexity: O(1), we are not using any extra space.   
+*/
