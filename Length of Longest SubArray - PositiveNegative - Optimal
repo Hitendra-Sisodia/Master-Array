@@ -1,0 +1,58 @@
+// Length of the longest subarray - Optimal (HashMap) 
+// Optimal Solution for +ve and -ve numbers
+#include<bits/stdc++.h>
+using namespace std;
+int LongestSubArray(vector<int> arr, int n ,int k)
+{
+    int maxlength = 0;
+    int sum = 0;
+    unordered_map<int,int> m;                // TC = O(N) as unordered_map implemented using hashing
+    // map<int,int> m;                      //  TC = O(N*LOG N) as map implemented usnig balanced BST.
+    for(int i = 0 ; i < n ;  i++){
+        sum += arr[i];
+        if(sum == k){
+            maxlength = max(maxlength , i+1);
+        }
+        int rem = sum - k;
+        if(m.find(rem) != m.end()){
+            int len = i - m[rem];
+            maxlength = max(maxlength, len);
+        }
+        m[sum] = i;
+    }
+    return maxlength;
+}
+int main()
+{
+    vector<int> arr = {2,3,5,1,9};
+    int k = 10;
+    cout<<LongestSubArray(arr,arr.size(), k);
+}
+
+// TC = O(N)
+// SC = O(N)
+
+/*
+    The reason for this is that the code iterates over the array once, 
+    performing constant time operations such as insertion and lookup in a hash map. 
+    Since the size of the hash map is at most the size of the input array, the operations 
+    on the hash map can be considered to be O(1) on average. Therefore, the overall time complexity 
+    of the code is O(n).
+
+    The reason for this is that the code uses a map data structure instead of an unordered_map, 
+    and the operations on a map have a time complexity of O(log n) on average. Therefore, 
+    each lookup or insertion in the map takes O(log n) time, and the code performs n such 
+    operations in the worst case.
+    Overall, the time complexity of the code is dominated by the map operations, 
+    and is therefore O(n*log n).
+
+    The space complexity of the given code is O(n), where n is the size of the input array.
+    The reason for this is that the code uses a map or a hash map to store the prefix sum and its 
+    corresponding index. The map or hash map can have at most n entries, one for each element 
+    in the input array. Therefore, the space complexity of the code is O(n).
+
+    In addition, the code uses a few integer variables that have a constant space requirement, 
+    so they do not contribute significantly to the overall space complexity. Therefore, the space 
+    complexity of the code is O(n).
+
+*/
