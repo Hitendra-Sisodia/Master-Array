@@ -1,0 +1,13 @@
+class Solution {
+public:
+    // Method - 1 
+    void rotate(vector<int>& arr, int d) {
+        int n = arr.size();
+        d = d % n;
+        vector<int> temp(n);
+        for(int i = 0 ; i < arr.size() ; i++){
+            temp[(i+d) % n] = arr[i];
+        }
+        arr = temp;
+    }
+};
